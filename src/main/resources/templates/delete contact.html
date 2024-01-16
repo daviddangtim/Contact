@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Contact</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/add contact style.css}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Delete Contact</h2>
+    <p>Are you sure that you want to remove <span th:text="${contact.name}"></span></p>
+    <form th:action="@{/delete/{id}(id=${contact.id})}" th:object="${contact}" method="post">
+        <span><button type="submit">Delete Contact</button></span>
+        <span><a th:href="@{/contacts}">Back</a></span>
+    </form>
+</div>
+
+</body>
+</html>

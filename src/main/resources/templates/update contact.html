@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Contact</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/add contact style.css}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Update Contact</h2>
+    <form th:action="@{/update/{id}(id=${contact.id})}" th:object="${contact}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required><br>
+
+        <label for="number">Number:</label>
+        <input type="text" id="number" name="number" th:field="*{number}" required oninput="validateNumberInput(this)"><br>
+
+        <button type="submit">Update Contact</button>
+    </form>
+
+</div>
+
+<script>
+    function validateNumberInput(inputElement) {
+        var inputValue = inputElement.value.trim();
+
+        // Regular expression to match non-numeric characters
+        var nonNumericPattern = /[^0-9]/g;
+
+        // Remove non-numeric characters from the input value
+        var numericValue = inputValue.replace(nonNumericPattern, '');
+
+        // If the input value was modified, update the input field
+        if (inputValue !== numericValue) {
+            inputElement.value = numericValue;
+        }
+
+        // Show alert if the input is not a number
+        if (!numericValue) {
+            alert("Please enter only numbers.");
+        }
+    }
+</script>
+</body>
+</html>
